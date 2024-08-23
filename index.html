@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Machine</a>
+                <ul>
+                    <li><a href="#" id="entry-link">ENTRY</a></li>
+                    <li><a href="#" id="exit-link">EXIT</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Entry Form -->
+    <div id="entry-form" style="display: none;">
+        <h1>Machine Entry Form</h1>
+        <form id="machine-form">
+            <label for="cus_name">Customer Name:</label>
+            <input type="text" id="cus_name" name="cus_name" required><br>
+            <label for="cus_address">Customer Address:</label>
+            <input type="text" id="cus_address" name="cus_address" required><br>
+            <label for="cus_phoneno">Customer Phone No:</label>
+            <input type="text" id="cus_phoneno" name="cus_phoneno" required><br>
+            <label for="machine_name">Machine Name:</label>
+            <select id="machine_name" name="machine_name" required>
+                <option value="M1">M1</option>
+                <option value="M2">M2</option>
+                <!-- Add more options as needed -->
+                <option value="Mn">Mn</option>
+            </select><br>
+            <label for="count">Count:</label>
+            <input type="number" id="count" name="count"><br>
+            <label for="out_time">Out Time:</label>
+            <input type="datetime-local" id="out_time" name="out_time" required><br>
+            <label for="in_time">In Time:</label>
+            <input type="datetime-local" id="in_time" name="in_time"><br>
+            <label for="rate">Rate:</label>
+            <input type="number" id="rate" name="rate" step="0.01"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Exit Form -->
+    <div id="exit-form" style="display: none;">
+        <h1>Machine Exit Records</h1>
+        <form id="date-range-form">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required><br>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required><br>
+            <button type="submit">Show Records</button>
+        </form>
+        <table id="records-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Customer Address</th>
+                    <th>Customer Phone No</th>
+                    <th>Machine Name</th>
+                    <th>Count</th>
+                    <th>Out Time</th>
+                    <th>In Time</th>
+                    <th>Rate</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Records will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Record</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit_record_id" name="record_id">
+                <label for="edit_in_time">In Time:</label>
+                <input type="datetime-local" id="edit_in_time" name="in_time" required><br>
+                <label for="edit_rate">Rate:</label>
+                <input type="number" id="edit_rate" name="rate" step="0.01" readonly><br>
+                <button type="submit">Save Changes</button>
+                <button type="button" id="cancel-edit">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Alert Box -->
+    <div id="custom-alert" class="alert">
+        <span id="alert-message"></span>
+        <span id="close-alert" class="close">&times;</span> <!-- Cross symbol for closing -->
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
